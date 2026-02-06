@@ -1,1 +1,32 @@
+name: ML CI/CD Pipeline
+
+# This workflow will run automatically when code is pushed to main branch
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the GitHub repository code
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # Step 2: Setup Python environment
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      # Step 3: Install all required libraries
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+
+      # Step 4: Run the ML Pipeline Script (train.py)
+      - name: Run Training Pipeline
+        run: |
+          python train.py
 
