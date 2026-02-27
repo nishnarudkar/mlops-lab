@@ -7,7 +7,26 @@ import pickle
 with open("model.pkl", "rb") as f:
     model = pickle.load(f)
 
-app = FastAPI()
+app = FastAPI(
+    title="Logistic Regression API",
+    description="ML model serving with FastAPI",
+    version="1.0"
+)
+
+@app.get("/")
+def root():
+    return {
+        "message": "Logistic Regression API",
+        "endpoints": {
+            "/predict": "POST - Make predictions",
+            "/health": "GET - Health check",
+            "/docs": "GET - API documentation"
+        }
+    }
+
+@app.get("/health")
+def health_check():
+    return {"status": "healthy", "model": "loaded"}
 
 class InputData(BaseModel):
     feature1: float
