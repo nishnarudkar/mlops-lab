@@ -25,7 +25,12 @@ pip install -r requirements.txt
 
 ## Usage
 
-Run the application:
+1. First, train the model:
+```bash
+python train.py
+```
+
+2. Run the application:
 ```bash
 uvicorn main:app --reload
 ```
@@ -34,9 +39,6 @@ The API will be available at `http://127.0.0.1:8000`
 
 ## API Endpoints
 
-- `GET /` - Root endpoint with API information
-- `GET /health` - Health check
-- `GET /predict-sample` - Test prediction with sample data
 - `POST /predict` - Make custom predictions
 - `GET /docs` - Interactive API documentation
 
